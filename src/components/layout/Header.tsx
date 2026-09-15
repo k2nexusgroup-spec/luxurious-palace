@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -34,8 +35,15 @@ export default function Header({ shopName, whatsappLink }: { shopName: string; w
   return (
     <header className="sticky top-0 z-40 border-b border-ink-100 bg-white/90 backdrop-blur">
       <div className="container-lp flex items-center justify-between gap-4 py-3">
-        <Link href="/" className="flex items-center gap-2 font-serif text-xl font-bold tracking-wide text-ink-900 sm:text-2xl">
-          {shopName}
+        <Link href="/" className="flex shrink-0 items-center" aria-label={shopName}>
+          <Image
+            src="/logo-cropped.png"
+            alt={shopName}
+            width={734}
+            height={525}
+            priority
+            className="h-10 w-auto sm:h-12"
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
