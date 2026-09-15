@@ -37,12 +37,12 @@ export default function Header({ shopName, whatsappLink }: { shopName: string; w
       <div className="container-lp flex items-center justify-between gap-4 py-3">
         <Link href="/" className="flex shrink-0 items-center" aria-label={shopName}>
           <Image
-            src="/logo-cropped.png"
+            src="/logo-transparent.png"
             alt={shopName}
             width={734}
             height={525}
             priority
-            className="h-10 w-auto sm:h-12"
+            className="h-14 w-auto sm:h-16"
           />
         </Link>
 
