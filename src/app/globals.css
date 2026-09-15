@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-ink-800 font-sans antialiased;
+}
+
+h1, h2, h3, h4, .font-display {
+  @apply font-serif;
+}
+
+::selection {
+  @apply bg-gold-300 text-ink-900;
+}
+
+.container-lp {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink-900 px-6 py-3 text-sm font-medium tracking-wide text-white transition-all duration-300 hover:bg-gold-500 hover:text-ink-900 active:scale-95;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink-900 px-6 py-3 text-sm font-medium tracking-wide text-ink-900 transition-all duration-300 hover:bg-ink-900 hover:text-white active:scale-95;
+}
+
+.btn-whatsapp {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold tracking-wide text-white shadow-lg shadow-green-900/10 transition-all duration-300 hover:brightness-105 active:scale-95;
+}
+
+.section-eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[0.25em] text-gold-600;
+}
+
+.reveal {
+  opacity: 0;
+  animation: fadeUp 0.7s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,0.25) 40%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.9s ease;
+}
+
+.shimmer:hover::after {
+  transform: translateX(100%);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

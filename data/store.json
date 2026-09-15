@@ -1,0 +1,666 @@
+{
+  "settings": {
+    "shopName": "Luxurious Palace",
+    "tagline": "Votre style. Votre identité. Votre élégance.",
+    "whatsappNumber": "0102295437",
+    "phoneNumber": "0103494593",
+    "whatsappLink": "https://wa.me/message/IVGWDQGJY6CWM1",
+    "email": "contact@luxuriouspalace.ci",
+    "address": "Abidjan, Côte d'Ivoire",
+    "socialLinks": {
+      "instagram": "#",
+      "facebook": "#",
+      "tiktok": "#"
+    },
+    "deliveryZones": [
+      {
+        "id": "abidjan",
+        "name": "Abidjan",
+        "fee": null,
+        "delay": "À configurer"
+      },
+      {
+        "id": "interieur",
+        "name": "Autres villes de Côte d'Ivoire",
+        "fee": null,
+        "delay": "À configurer"
+      }
+    ],
+    "promoCodes": [
+      {
+        "id": "welcome10",
+        "code": "BIENVENUE10",
+        "discountPercent": 10,
+        "active": true
+      }
+    ],
+    "paymentMethods": [
+      {
+        "name": "Paiement à la livraison",
+        "enabled": true
+      },
+      {
+        "name": "Orange Money",
+        "enabled": false
+      },
+      {
+        "name": "MTN Money",
+        "enabled": false
+      },
+      {
+        "name": "Moov Money",
+        "enabled": false
+      },
+      {
+        "name": "Wave",
+        "enabled": false
+      }
+    ]
+  },
+  "categories": [
+    {
+      "slug": "bijoux",
+      "name": "Bijoux",
+      "description": "Chaînes, bracelets et boucles d'oreilles pour homme et femme, pensés pour sublimer chaque tenue.",
+      "image": "gradient-bijoux"
+    },
+    {
+      "slug": "parfums",
+      "name": "Parfums",
+      "description": "Des fragrances homme et femme qui marquent les esprits, à porter au quotidien ou pour les grandes occasions.",
+      "image": "gradient-parfums"
+    },
+    {
+      "slug": "vetements",
+      "name": "Vêtements",
+      "description": "Débardeurs, T-shirts, polos et boxers 100% coton, personnalisables selon vos envies.",
+      "image": "gradient-vetements"
+    }
+  ],
+  "products": [
+    {
+      "id": "p001",
+      "slug": "chaine-cubaine-or-homme",
+      "name": "Chaîne Cubaine Plaquée Or",
+      "category": "bijoux",
+      "subCategory": "chaines",
+      "gender": "homme",
+      "price": 25000,
+      "oldPrice": 32000,
+      "images": [],
+      "description": "Chaîne cubaine plaquée or, maille épaisse et fermoir sécurisé. Un incontournable pour affirmer votre style, résistant au quotidien et facile d'entretien.",
+      "shortDescription": "Maille cubaine épaisse, finition plaquée or.",
+      "sizes": [
+        "50cm",
+        "60cm"
+      ],
+      "colors": [
+        "Or"
+      ],
+      "customizable": false,
+      "stock": 14,
+      "badges": [
+        "populaire",
+        "promo"
+      ],
+      "rating": 4.7,
+      "reviewsCount": 32,
+      "popularity": 98,
+      "createdAt": "2026-06-01"
+    },
+    {
+      "id": "p002",
+      "slug": "chaine-fine-argent-femme",
+      "name": "Chaîne Fine Argentée",
+      "category": "bijoux",
+      "subCategory": "chaines",
+      "gender": "femme",
+      "price": 15000,
+      "images": [],
+      "description": "Chaîne fine au fini argenté, légère et discrète, idéale à porter seule ou superposée avec vos autres bijoux.",
+      "shortDescription": "Finition argentée, très légère.",
+      "sizes": [
+        "40cm",
+        "45cm"
+      ],
+      "colors": [
+        "Argent"
+      ],
+      "customizable": false,
+      "stock": 20,
+      "badges": [
+        "nouveau"
+      ],
+      "rating": 4.5,
+      "reviewsCount": 11,
+      "popularity": 70,
+      "createdAt": "2026-08-10"
+    },
+    {
+      "id": "p003",
+      "slug": "bracelet-jonc-homme",
+      "name": "Bracelet Jonc Acier Doré",
+      "category": "bijoux",
+      "subCategory": "bracelets",
+      "gender": "homme",
+      "price": 12000,
+      "images": [],
+      "description": "Bracelet jonc rigide en acier inoxydable doré, ne noircit pas et résiste à l'eau. Style minimaliste et masculin.",
+      "shortDescription": "Acier inoxydable, ne noircit pas.",
+      "sizes": [
+        "Taille unique"
+      ],
+      "colors": [
+        "Or",
+        "Argent"
+      ],
+      "customizable": false,
+      "stock": 25,
+      "badges": [
+        "populaire"
+      ],
+      "rating": 4.6,
+      "reviewsCount": 19,
+      "popularity": 85,
+      "createdAt": "2026-05-20"
+    },
+    {
+      "id": "p004",
+      "slug": "bracelet-perles-femme",
+      "name": "Bracelet Perles Champagne",
+      "category": "bijoux",
+      "subCategory": "bracelets",
+      "gender": "femme",
+      "price": 9000,
+      "images": [],
+      "description": "Bracelet en perles nacrées ton champagne, élastique et ajustable, parfait pour un look élégant au quotidien.",
+      "shortDescription": "Perles nacrées, élastique ajustable.",
+      "sizes": [
+        "Taille unique"
+      ],
+      "colors": [
+        "Champagne",
+        "Blanc"
+      ],
+      "customizable": false,
+      "stock": 30,
+      "badges": [],
+      "rating": 4.4,
+      "reviewsCount": 8,
+      "popularity": 55,
+      "createdAt": "2026-07-02"
+    },
+    {
+      "id": "p005",
+      "slug": "boucles-oreilles-creoles-femme",
+      "name": "Créoles Dorées Élégance",
+      "category": "bijoux",
+      "subCategory": "boucles-oreilles",
+      "gender": "femme",
+      "price": 8000,
+      "images": [],
+      "description": "Créoles dorées de taille moyenne, légères à porter, pour un effet chic garanti en toute occasion.",
+      "shortDescription": "Créoles moyennes, finition dorée.",
+      "sizes": [
+        "3cm",
+        "5cm"
+      ],
+      "colors": [
+        "Or"
+      ],
+      "customizable": false,
+      "stock": 18,
+      "badges": [
+        "nouveau",
+        "populaire"
+      ],
+      "rating": 4.8,
+      "reviewsCount": 27,
+      "popularity": 90,
+      "createdAt": "2026-08-25"
+    },
+    {
+      "id": "p006",
+      "slug": "boucles-oreilles-clous-homme",
+      "name": "Clous d'Oreilles Acier Homme",
+      "category": "bijoux",
+      "subCategory": "boucles-oreilles",
+      "gender": "homme",
+      "price": 6000,
+      "images": [],
+      "description": "Clous d'oreilles discrets en acier inoxydable, hypoallergéniques, pour un style masculin affirmé.",
+      "shortDescription": "Acier hypoallergénique, discret.",
+      "sizes": [
+        "Taille unique"
+      ],
+      "colors": [
+        "Argent",
+        "Noir"
+      ],
+      "customizable": false,
+      "stock": 22,
+      "badges": [],
+      "rating": 4.3,
+      "reviewsCount": 6,
+      "popularity": 40,
+      "createdAt": "2026-04-15"
+    },
+    {
+      "id": "p007",
+      "slug": "parfum-homme-intense-noir",
+      "name": "Parfum Homme Intense Noir",
+      "category": "parfums",
+      "subCategory": "parfum-homme",
+      "gender": "homme",
+      "price": 18000,
+      "images": [],
+      "description": "Fragrance boisée et intense pour homme, notes de cèdre et de vétiver, tenue longue durée idéale pour la journée comme la soirée.",
+      "shortDescription": "Notes boisées, tenue longue durée.",
+      "sizes": [
+        "50ml",
+        "100ml"
+      ],
+      "colors": [],
+      "customizable": false,
+      "stock": 16,
+      "badges": [
+        "populaire"
+      ],
+      "rating": 4.9,
+      "reviewsCount": 41,
+      "popularity": 97,
+      "createdAt": "2026-03-10"
+    },
+    {
+      "id": "p008",
+      "slug": "parfum-homme-frais-citrus",
+      "name": "Parfum Homme Frais Citrus",
+      "category": "parfums",
+      "subCategory": "parfum-homme",
+      "gender": "homme",
+      "price": 16000,
+      "images": [],
+      "description": "Eau de toilette fraîche aux notes d'agrumes, parfaite pour un usage quotidien et les journées chaudes d'Abidjan.",
+      "shortDescription": "Notes d'agrumes, usage quotidien.",
+      "sizes": [
+        "50ml",
+        "100ml"
+      ],
+      "colors": [],
+      "customizable": false,
+      "stock": 20,
+      "badges": [
+        "nouveau"
+      ],
+      "rating": 4.5,
+      "reviewsCount": 9,
+      "popularity": 60,
+      "createdAt": "2026-08-05"
+    },
+    {
+      "id": "p009",
+      "slug": "parfum-femme-floral-elegance",
+      "name": "Parfum Femme Floral Élégance",
+      "category": "parfums",
+      "subCategory": "parfum-femme",
+      "gender": "femme",
+      "price": 19000,
+      "oldPrice": 23000,
+      "images": [],
+      "description": "Un bouquet floral raffiné mêlant jasmin et rose, pour une signature olfactive douce et féminine.",
+      "shortDescription": "Bouquet floral, jasmin et rose.",
+      "sizes": [
+        "50ml",
+        "100ml"
+      ],
+      "colors": [],
+      "customizable": false,
+      "stock": 12,
+      "badges": [
+        "promo",
+        "populaire"
+      ],
+      "rating": 4.8,
+      "reviewsCount": 35,
+      "popularity": 95,
+      "createdAt": "2026-02-18"
+    },
+    {
+      "id": "p010",
+      "slug": "parfum-femme-oriental-mystere",
+      "name": "Parfum Femme Oriental Mystère",
+      "category": "parfums",
+      "subCategory": "parfum-femme",
+      "gender": "femme",
+      "price": 21000,
+      "images": [],
+      "description": "Un parfum oriental envoûtant, ambre et vanille, pour les soirées où vous voulez marquer les esprits.",
+      "shortDescription": "Ambre et vanille, tenue soirée.",
+      "sizes": [
+        "50ml",
+        "100ml"
+      ],
+      "colors": [],
+      "customizable": false,
+      "stock": 10,
+      "badges": [],
+      "rating": 4.6,
+      "reviewsCount": 14,
+      "popularity": 65,
+      "createdAt": "2026-06-22"
+    },
+    {
+      "id": "p011",
+      "slug": "debardeur-uni-non-personnalise",
+      "name": "Débardeur Coton Uni",
+      "category": "vetements",
+      "subCategory": "debardeurs",
+      "gender": "mixte",
+      "price": 6000,
+      "images": [],
+      "description": "Débardeur 100% coton, coupe confortable, respirant et doux. Disponible en plusieurs couleurs unies.",
+      "shortDescription": "100% coton, coupe confortable.",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Blanc",
+        "Noir",
+        "Beige"
+      ],
+      "customizable": false,
+      "stock": 40,
+      "badges": [],
+      "rating": 4.2,
+      "reviewsCount": 10,
+      "popularity": 45,
+      "createdAt": "2026-05-01"
+    },
+    {
+      "id": "p012",
+      "slug": "debardeur-personnalise",
+      "name": "Débardeur Personnalisé",
+      "category": "vetements",
+      "subCategory": "debardeurs",
+      "gender": "mixte",
+      "price": 8500,
+      "images": [],
+      "description": "Débardeur 100% coton personnalisable : ajoutez votre texte, initiale ou visuel pour un article unique qui vous ressemble.",
+      "shortDescription": "100% coton, personnalisation incluse.",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Blanc",
+        "Noir",
+        "Beige",
+        "Champagne"
+      ],
+      "customizable": true,
+      "customizationNote": "Précisez le texte, l'initiale ou le visuel souhaité, ainsi que l'emplacement (devant/dos).",
+      "stock": 35,
+      "badges": [
+        "nouveau",
+        "populaire"
+      ],
+      "rating": 4.9,
+      "reviewsCount": 22,
+      "popularity": 92,
+      "createdAt": "2026-08-15"
+    },
+    {
+      "id": "p013",
+      "slug": "tshirt-uni-non-personnalise",
+      "name": "T-shirt Coton Essentiel",
+      "category": "vetements",
+      "subCategory": "tshirts",
+      "gender": "mixte",
+      "price": 7000,
+      "images": [],
+      "description": "T-shirt 100% coton à la coupe intemporelle, doux et résistant, un basique indispensable de votre garde-robe.",
+      "shortDescription": "100% coton, coupe intemporelle.",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Blanc",
+        "Noir",
+        "Gris",
+        "Bordeaux"
+      ],
+      "customizable": false,
+      "stock": 50,
+      "badges": [
+        "populaire"
+      ],
+      "rating": 4.5,
+      "reviewsCount": 28,
+      "popularity": 88,
+      "createdAt": "2026-04-28"
+    },
+    {
+      "id": "p014",
+      "slug": "tshirt-personnalise",
+      "name": "T-shirt Personnalisé",
+      "category": "vetements",
+      "subCategory": "tshirts",
+      "gender": "mixte",
+      "price": 9500,
+      "images": [],
+      "description": "T-shirt 100% coton personnalisable avec le texte, logo ou visuel de votre choix. Idéal pour un cadeau ou un évènement.",
+      "shortDescription": "100% coton, personnalisation incluse.",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Blanc",
+        "Noir",
+        "Gris"
+      ],
+      "customizable": true,
+      "customizationNote": "Précisez le texte, logo ou visuel souhaité, la couleur d'impression et l'emplacement.",
+      "stock": 30,
+      "badges": [
+        "nouveau"
+      ],
+      "rating": 4.7,
+      "reviewsCount": 17,
+      "popularity": 80,
+      "createdAt": "2026-08-20"
+    },
+    {
+      "id": "p015",
+      "slug": "polo-uni-non-personnalise",
+      "name": "Polo Coton Classique",
+      "category": "vetements",
+      "subCategory": "polos",
+      "gender": "homme",
+      "price": 12000,
+      "images": [],
+      "description": "Polo 100% coton à la coupe classique, col côtelé et finitions soignées, pour un style décontracté chic.",
+      "shortDescription": "100% coton, coupe classique.",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Blanc",
+        "Marine",
+        "Noir"
+      ],
+      "customizable": false,
+      "stock": 24,
+      "badges": [],
+      "rating": 4.4,
+      "reviewsCount": 13,
+      "popularity": 58,
+      "createdAt": "2026-05-12"
+    },
+    {
+      "id": "p016",
+      "slug": "polo-personnalise",
+      "name": "Polo Personnalisé",
+      "category": "vetements",
+      "subCategory": "polos",
+      "gender": "homme",
+      "price": 14500,
+      "images": [],
+      "description": "Polo 100% coton personnalisable avec broderie ou impression de votre choix, parfait pour une tenue d'équipe ou d'entreprise.",
+      "shortDescription": "100% coton, broderie/impression possible.",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Blanc",
+        "Marine",
+        "Noir"
+      ],
+      "customizable": true,
+      "customizationNote": "Précisez le texte/logo à broder ou imprimer, ainsi que l'emplacement souhaité.",
+      "stock": 18,
+      "badges": [
+        "populaire"
+      ],
+      "rating": 4.6,
+      "reviewsCount": 9,
+      "popularity": 72,
+      "createdAt": "2026-07-18"
+    },
+    {
+      "id": "p017",
+      "slug": "boxer-uni-non-personnalise",
+      "name": "Boxer Coton Confort",
+      "category": "vetements",
+      "subCategory": "boxers",
+      "gender": "homme",
+      "price": 4500,
+      "images": [],
+      "description": "Boxer 100% coton, ceinture souple et coupe confortable pour un usage quotidien.",
+      "shortDescription": "100% coton, ceinture souple.",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Noir",
+        "Gris",
+        "Bleu"
+      ],
+      "customizable": false,
+      "stock": 60,
+      "badges": [],
+      "rating": 4.3,
+      "reviewsCount": 15,
+      "popularity": 50,
+      "createdAt": "2026-03-30"
+    },
+    {
+      "id": "p018",
+      "slug": "boxer-personnalise",
+      "name": "Boxer Personnalisé",
+      "category": "vetements",
+      "subCategory": "boxers",
+      "gender": "homme",
+      "price": 6000,
+      "images": [],
+      "description": "Boxer 100% coton avec option de personnalisation (initiales, texte) pour un cadeau original et unique.",
+      "shortDescription": "100% coton, personnalisation possible.",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "colors": [
+        "Noir",
+        "Gris",
+        "Bleu"
+      ],
+      "customizable": true,
+      "customizationNote": "Précisez les initiales ou le texte souhaité et son emplacement.",
+      "stock": 25,
+      "badges": [
+        "nouveau"
+      ],
+      "rating": 4.5,
+      "reviewsCount": 7,
+      "popularity": 62,
+      "createdAt": "2026-08-28"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "t1",
+      "name": "Aïcha K.",
+      "rating": 5,
+      "text": "Superbe qualité pour le bracelet perles, exactement comme sur les photos. Livraison rapide à Abidjan !",
+      "city": "Abidjan",
+      "demo": true
+    },
+    {
+      "id": "t2",
+      "name": "Mohamed T.",
+      "rating": 5,
+      "text": "Le t-shirt personnalisé est top, impression nickel. Je recommande la boutique les yeux fermés.",
+      "city": "Yamoussoukro",
+      "demo": true
+    },
+    {
+      "id": "t3",
+      "name": "Fatou D.",
+      "rating": 4,
+      "text": "Très bon parfum, tenue longue durée. La commande sur WhatsApp était simple et rapide.",
+      "city": "Bouaké",
+      "demo": true
+    },
+    {
+      "id": "t4",
+      "name": "Yves N.",
+      "rating": 5,
+      "text": "La chaîne cubaine a un super rendu, je l'ai reçue bien emballée. Merci Luxurious Palace !",
+      "city": "Abidjan",
+      "demo": true
+    },
+    {
+      "id": "t5",
+      "name": "Grace A.",
+      "rating": 5,
+      "text": "Service client réactif sur WhatsApp, ils m'ont bien conseillée pour la taille du polo.",
+      "city": "San-Pédro",
+      "demo": true
+    }
+  ],
+  "banners": [
+    {
+      "id": "b1",
+      "title": "Votre style. Votre identité. Votre élégance.",
+      "subtitle": "Bijoux, parfums et vêtements personnalisés pour révéler votre style au quotidien.",
+      "ctaLabel": "Découvrir la boutique",
+      "ctaHref": "/boutique",
+      "image": "gradient-hero",
+      "active": true
+    }
+  ],
+  "orders": []
+}
