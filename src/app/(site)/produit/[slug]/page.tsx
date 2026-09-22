@@ -56,7 +56,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       </nav>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-        <Gallery category={product.category} />
+        <Gallery category={product.category} images={product.images} alt={product.name} />
 
         <div>
           <div className="mb-2 flex flex-wrap gap-2">

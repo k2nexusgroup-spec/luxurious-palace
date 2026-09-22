@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import type { Product } from "@/lib/types";
-import ProductVisual from "@/components/ui/ProductVisual";
+import ProductImage from "@/components/ui/ProductImage";
 import ProductBadge from "@/components/ui/Badge";
 import StarRating from "@/components/ui/StarRating";
 import WhatsappIcon from "@/components/ui/WhatsappIcon";
@@ -56,7 +56,12 @@ export default function ProductCard({ product, whatsappNumber }: { product: Prod
       </button>
 
       <Link href={`/produit/${product.slug}`} className="relative block aspect-[4/5] w-full overflow-hidden">
-        <ProductVisual category={product.category} className="h-full w-full transition-transform duration-500 group-hover:scale-105" />
+        <ProductImage
+          src={product.images[0]}
+          category={product.category}
+          alt={product.name}
+          className="transition-transform duration-500 group-hover:scale-105"
+        />
         <div className="absolute left-3 top-3 flex flex-col gap-1.5">
           {product.badges.map((b) => (
             <ProductBadge key={b} type={b} />

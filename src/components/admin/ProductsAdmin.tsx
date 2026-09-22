@@ -27,7 +27,8 @@ const emptyForm = {
   customizationNote: "",
   description: "",
   shortDescription: "",
-  badges: [] as Badge[]
+  badges: [] as Badge[],
+  images: [] as string[]
 };
 
 export default function ProductsAdmin() {
@@ -36,6 +37,8 @@ export default function ProductsAdmin() {
   const [formOpen, setFormOpen] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
 
   async function loadProducts() {
     setLoading(true);
@@ -69,9 +72,37 @@ export default function ProductsAdmin() {
       customizationNote: p.customizationNote ?? "",
       description: p.description,
       shortDescription: p.shortDescription,
-      badges: p.badges
+      badges: p.badges,
+      images: p.images ?? []
     });
     setFormOpen(true);
+  }
+
+  async function handleImageUpload(files: FileList | null) {
+    if (!files || files.length === 0) return;
+    setUploading(true);
+    setUploadError("");
+    try {
+      for (const file of Array.from(files)) {
+        const body = new FormData();
+        body.append("file", file);
+        const res = await fetch("/api/admin/upload", { method: "POST", body });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          throw new Error(data.error || "Échec de l'envoi de l'image.");
+        }
+        const data = await res.json();
+        setForm((f) => ({ ...f, images: [...f.images, data.url] }));
+      }
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : "Échec de l'envoi de l'image.");
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  function removeImage(url: string) {
+    setForm((f) => ({ ...f, images: f.images.filter((i) => i !== url) }));
   }
 
   async function handleDelete(id: string) {
@@ -104,7 +135,8 @@ export default function ProductsAdmin() {
       customizationNote: form.customizationNote,
       description: form.description,
       shortDescription: form.shortDescription,
-      badges: form.badges
+      badges: form.badges,
+      images: form.images
     };
 
     if (form.id) {
@@ -141,6 +173,7 @@ export default function ProductsAdmin() {
         <table className="w-full min-w-[640px] text-sm">
           <thead className="border-b border-ink-100 text-left text-xs uppercase tracking-wide text-ink-400">
             <tr>
+              <th className="px-4 py-3">Photo</th>
               <th className="px-4 py-3">Produit</th>
               <th className="px-4 py-3">Catégorie</th>
               <th className="px-4 py-3">Prix</th>
@@ -151,10 +184,20 @@ export default function ProductsAdmin() {
           </thead>
           <tbody>
             {loading ? (
-              <tr><td className="px-4 py-6 text-ink-400" colSpan={6}>Chargement…</td></tr>
+              <tr><td className="px-4 py-6 text-ink-400" colSpan={7}>Chargement…</td></tr>
             ) : (
               products.map((p) => (
                 <tr key={p.id} className="border-b border-ink-50 last:border-0">
+                  <td className="px-4 py-3">
+                    {p.images[0] ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={p.images[0]} alt="" className="h-10 w-10 rounded-lg object-cover" />
+                    ) : (
+                      <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-ink-50 text-[10px] text-ink-300">
+                        Aucune
+                      </span>
+                    )}
+                  </td>
                   <td className="px-4 py-3 font-medium text-ink-800">{p.name}</td>
                   <td className="px-4 py-3 capitalize text-ink-500">{p.category} / {p.subCategory}</td>
                   <td className="px-4 py-3 text-ink-700">{formatFcfa(p.price)}</td>
@@ -273,10 +316,44 @@ export default function ProductsAdmin() {
               </Field>
             )}
 
-            <p className="mt-4 text-xs text-ink-400">
-              Aucune photo n'est encore configurée pour ce produit : un visuel de démonstration s'affiche à sa place.
-              L'ajout de vraies photos (upload ou lien) pourra être branché ultérieurement.
-            </p>
+            <Field label="Photos du produit" className="mt-4">
+              <div className="flex flex-wrap gap-3">
+                {form.images.map((url) => (
+                  <div key={url} className="group relative h-20 w-20 overflow-hidden rounded-lg border border-ink-200">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={url} alt="" className="h-full w-full object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => removeImage(url)}
+                      className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-black/60 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100"
+                      aria-label="Supprimer la photo"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+                <label className="flex h-20 w-20 cursor-pointer flex-col items-center justify-center gap-1 rounded-lg border border-dashed border-ink-300 text-ink-400 hover:border-gold-500 hover:text-gold-600">
+                  <span className="text-lg">＋</span>
+                  <span className="text-[10px]">Ajouter</span>
+                  <input
+                    type="file"
+                    accept="image/png,image/jpeg,image/webp,image/gif"
+                    multiple
+                    className="hidden"
+                    onChange={(e) => {
+                      handleImageUpload(e.target.files);
+                      e.target.value = "";
+                    }}
+                  />
+                </label>
+              </div>
+              {uploading && <p className="mt-2 text-xs text-ink-400">Envoi de la photo en cours…</p>}
+              {uploadError && <p className="mt-2 text-xs text-red-500">{uploadError}</p>}
+              <p className="mt-2 text-xs text-ink-400">
+                La première photo sert d'image principale sur la boutique. En l'absence de photo, un visuel de
+                démonstration s'affiche à la place.
+              </p>
+            </Field>
 
             <div className="mt-6 flex justify-end gap-3">
               <button type="button" onClick={() => setFormOpen(false)} className="btn-outline">Annuler</button>
