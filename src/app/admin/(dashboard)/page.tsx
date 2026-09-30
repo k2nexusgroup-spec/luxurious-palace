@@ -2,8 +2,8 @@ import Link from "next/link";
 import { readStore } from "@/lib/db";
 import { formatFcfa } from "@/lib/whatsapp";
 
-export default function AdminDashboardPage() {
-  const store = readStore();
+export default async function AdminDashboardPage() {
+  const store = await readStore();
   const totalProducts = store.products.length;
   const totalOrders = store.orders.length;
   const newOrders = store.orders.filter((o) => o.status === "nouvelle").length;

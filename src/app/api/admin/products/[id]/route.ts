@@ -6,7 +6,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   const body = (await request.json()) as Partial<Product>;
   let updated: Product | null = null;
 
-  updateStore((data) => {
+  await updateStore((data) => {
     const index = data.products.findIndex((p) => p.id === params.id);
     if (index === -1) return;
     data.products[index] = { ...data.products[index], ...body, id: params.id };
@@ -19,7 +19,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
 export async function DELETE(_request: NextRequest, { params }: { params: { id: string } }) {
   let found = false;
-  updateStore((data) => {
+  await updateStore((data) => {
     const before = data.products.length;
     data.products = data.products.filter((p) => p.id !== params.id);
     found = data.products.length !== before;

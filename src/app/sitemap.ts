@@ -3,7 +3,7 @@ import { getAllProducts, getCategories } from "@/lib/queries";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     "",
     "/boutique",
@@ -20,14 +20,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "" ? 1 : 0.6
   }));
 
-  const categoryRoutes = getCategories().map((c) => ({
+  const categoryRoutes = (await getCategories()).map((c) => ({
     url: `${siteUrl}/categorie/${c.slug}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,
     priority: 0.7
   }));
 
-  const productRoutes = getAllProducts().map((p) => ({
+  const productRoutes = (await getAllProducts()).map((p) => ({
     url: `${siteUrl}/produit/${p.slug}`,
     lastModified: new Date(p.createdAt),
     changeFrequency: "weekly" as const,

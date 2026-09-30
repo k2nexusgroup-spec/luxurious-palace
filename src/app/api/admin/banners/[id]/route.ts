@@ -5,7 +5,7 @@ import type { Banner } from "@/lib/types";
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   const body = (await request.json()) as Partial<Banner>;
   let updated: Banner | null = null;
-  updateStore((data) => {
+  await updateStore((data) => {
     const index = data.banners.findIndex((b) => b.id === params.id);
     if (index === -1) return;
     data.banners[index] = { ...data.banners[index], ...body, id: params.id };
@@ -17,7 +17,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
 export async function DELETE(_request: NextRequest, { params }: { params: { id: string } }) {
   let found = false;
-  updateStore((data) => {
+  await updateStore((data) => {
     const before = data.banners.length;
     data.banners = data.banners.filter((b) => b.id !== params.id);
     found = data.banners.length !== before;

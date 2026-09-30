@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     channel: "whatsapp"
   };
 
-  updateStore((data) => {
+  await updateStore((data) => {
     data.orders.unshift(newOrder);
   });
 

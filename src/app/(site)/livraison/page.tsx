@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   description: "Informations sur la livraison des commandes Luxurious Palace à Abidjan et dans les autres villes de Côte d'Ivoire."
 };
 
-export default function LivraisonPage() {
-  const settings = getSettings();
+export default async function LivraisonPage() {
+  const settings = await getSettings();
 
   return (
     <div className="container-lp py-16">

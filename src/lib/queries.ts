@@ -1,50 +1,50 @@
 import { readStore } from "./db";
 import type { CategorySlug, Gender, Product } from "./types";
 
-export function getSettings() {
-  return readStore().settings;
+export async function getSettings() {
+  return (await readStore()).settings;
 }
 
-export function getCategories() {
-  return readStore().categories;
+export async function getCategories() {
+  return (await readStore()).categories;
 }
 
-export function getCategory(slug: CategorySlug) {
-  return getCategories().find((c) => c.slug === slug) ?? null;
+export async function getCategory(slug: CategorySlug) {
+  return (await getCategories()).find((c) => c.slug === slug) ?? null;
 }
 
-export function getTestimonials() {
-  return readStore().testimonials;
+export async function getTestimonials() {
+  return (await readStore()).testimonials;
 }
 
-export function getBanners() {
-  return readStore().banners.filter((b) => b.active);
+export async function getBanners() {
+  return (await readStore()).banners.filter((b) => b.active);
 }
 
-export function getAllProducts(): Product[] {
-  return readStore().products;
+export async function getAllProducts(): Promise<Product[]> {
+  return (await readStore()).products;
 }
 
-export function getProductBySlug(slug: string): Product | null {
-  return getAllProducts().find((p) => p.slug === slug) ?? null;
+export async function getProductBySlug(slug: string): Promise<Product | null> {
+  return (await getAllProducts()).find((p) => p.slug === slug) ?? null;
 }
 
-export function getProductsByCategory(category: CategorySlug): Product[] {
-  return getAllProducts().filter((p) => p.category === category);
+export async function getProductsByCategory(category: CategorySlug): Promise<Product[]> {
+  return (await getAllProducts()).filter((p) => p.category === category);
 }
 
-export function getPopularProducts(limit = 8): Product[] {
-  return [...getAllProducts()].sort((a, b) => b.popularity - a.popularity).slice(0, limit);
+export async function getPopularProducts(limit = 8): Promise<Product[]> {
+  return [...(await getAllProducts())].sort((a, b) => b.popularity - a.popularity).slice(0, limit);
 }
 
-export function getNewProducts(limit = 8): Product[] {
-  return [...getAllProducts()]
+export async function getNewProducts(limit = 8): Promise<Product[]> {
+  return [...(await getAllProducts())]
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
     .slice(0, limit);
 }
 
-export function getRelatedProducts(product: Product, limit = 4): Product[] {
-  return getAllProducts()
+export async function getRelatedProducts(product: Product, limit = 4): Promise<Product[]> {
+  return (await getAllProducts())
     .filter((p) => p.id !== product.id && p.category === product.category)
     .slice(0, limit);
 }
@@ -62,8 +62,8 @@ export interface ProductFilters {
   customizable?: boolean;
 }
 
-export function filterProducts(filters: ProductFilters): Product[] {
-  let results = getAllProducts();
+export async function filterProducts(filters: ProductFilters): Promise<Product[]> {
+  let results = await getAllProducts();
 
   if (filters.category) results = results.filter((p) => p.category === filters.category);
   if (filters.subCategory) results = results.filter((p) => p.subCategory === filters.subCategory);
@@ -98,14 +98,14 @@ export function filterProducts(filters: ProductFilters): Product[] {
   return results;
 }
 
-export function getAllSizes(): string[] {
+export async function getAllSizes(): Promise<string[]> {
   const sizes = new Set<string>();
-  getAllProducts().forEach((p) => p.sizes.forEach((s) => sizes.add(s)));
+  (await getAllProducts()).forEach((p) => p.sizes.forEach((s) => sizes.add(s)));
   return Array.from(sizes);
 }
 
-export function getAllColors(): string[] {
+export async function getAllColors(): Promise<string[]> {
   const colors = new Set<string>();
-  getAllProducts().forEach((p) => p.colors.forEach((c) => colors.add(c)));
+  (await getAllProducts()).forEach((p) => p.colors.forEach((c) => colors.add(c)));
   return Array.from(colors);
 }

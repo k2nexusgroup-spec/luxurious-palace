@@ -4,8 +4,8 @@ import { getSettings } from "@/lib/queries";
 
 export const metadata: Metadata = { title: "Mon panier" };
 
-export default function CartPage() {
-  const settings = getSettings();
+export default async function CartPage() {
+  const settings = await getSettings();
 
   return (
     <div className="container-lp py-12 sm:py-16">

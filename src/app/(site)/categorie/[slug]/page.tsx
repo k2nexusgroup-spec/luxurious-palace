@@ -4,15 +4,13 @@ import { notFound } from "next/navigation";
 import ProductVisual from "@/components/ui/ProductVisual";
 import ProductCard from "@/components/shop/ProductCard";
 import CategoryFilters from "@/components/shop/CategoryFilters";
-import { filterProducts, getCategories, getCategory, getSettings } from "@/lib/queries";
+import { filterProducts, getCategory, getSettings } from "@/lib/queries";
 import type { CategorySlug } from "@/lib/types";
 
-export function generateStaticParams() {
-  return getCategories().map((c) => ({ slug: c.slug }));
-}
+export const dynamic = "force-dynamic";
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const category = getCategory(params.slug as CategorySlug);
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const category = await getCategory(params.slug as CategorySlug);
   if (!category) return {};
   return {
     title: category.name,
@@ -20,18 +18,18 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function CategoryPage({
+export default async function CategoryPage({
   params,
   searchParams
 }: {
   params: { slug: string };
   searchParams: Record<string, string | undefined>;
 }) {
-  const category = getCategory(params.slug as CategorySlug);
+  const category = await getCategory(params.slug as CategorySlug);
   if (!category) notFound();
 
-  const settings = getSettings();
-  const products = filterProducts({
+  const settings = await getSettings();
+  const products = await filterProducts({
     category: category.slug,
     subCategory: searchParams.subCategory,
     gender: searchParams.gender as "homme" | "femme" | undefined,

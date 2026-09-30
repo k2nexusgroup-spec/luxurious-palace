@@ -3,7 +3,7 @@ import { updateStore } from "@/lib/db";
 
 export async function DELETE(_request: NextRequest, { params }: { params: { id: string } }) {
   let found = false;
-  updateStore((data) => {
+  await updateStore((data) => {
     const before = data.testimonials.length;
     data.testimonials = data.testimonials.filter((t) => t.id !== params.id);
     found = data.testimonials.length !== before;

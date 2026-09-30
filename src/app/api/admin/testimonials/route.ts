@@ -3,7 +3,7 @@ import { readStore, updateStore } from "@/lib/db";
 import type { Testimonial } from "@/lib/types";
 
 export async function GET() {
-  const store = readStore();
+  const store = await readStore();
   return NextResponse.json(store.testimonials);
 }
 
@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     city: body.city ?? "",
     demo: true
   };
-  updateStore((data) => {
+  await updateStore((data) => {
     data.testimonials.unshift(newTestimonial);
   });
   return NextResponse.json(newTestimonial, { status: 201 });

@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     "Découvrez Luxurious Palace : bijoux, parfums et vêtements 100% coton personnalisables en Côte d'Ivoire. Commande simple sur WhatsApp."
 };
 
-export default function HomePage() {
-  const settings = getSettings();
-  const categories = getCategories();
-  const banners = getBanners();
-  const popular = getPopularProducts(8);
-  const nouveautes = getNewProducts(4);
-  const testimonials = getTestimonials();
+export default async function HomePage() {
+  const settings = await getSettings();
+  const categories = await getCategories();
+  const banners = await getBanners();
+  const popular = await getPopularProducts(8);
+  const nouveautes = await getNewProducts(4);
+  const testimonials = await getTestimonials();
   const banner = banners[0];
 
   const jsonLd = {

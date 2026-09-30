@@ -3,7 +3,7 @@ import { readStore, updateStore } from "@/lib/db";
 import type { Product } from "@/lib/types";
 
 export async function GET() {
-  const store = readStore();
+  const store = await readStore();
   return NextResponse.json(store.products);
 }
 
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     createdAt: new Date().toISOString().slice(0, 10)
   };
 
-  const store = updateStore((data) => {
+  await updateStore((data) => {
     data.products.unshift(newProduct);
   });
 

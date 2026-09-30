@@ -3,8 +3,8 @@ import { getSettings } from "@/lib/queries";
 
 export const metadata: Metadata = { title: "Conditions générales de vente" };
 
-export default function MentionsLegalesPage() {
-  const settings = getSettings();
+export default async function MentionsLegalesPage() {
+  const settings = await getSettings();
 
   return (
     <div className="container-lp max-w-3xl py-16">

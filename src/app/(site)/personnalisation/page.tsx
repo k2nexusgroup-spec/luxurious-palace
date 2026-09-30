@@ -9,9 +9,9 @@ export const metadata: Metadata = {
     "Personnalisez vos débardeurs, T-shirts, polos et boxers 100% coton chez Luxurious Palace : texte, initiales, logo ou visuel au choix."
 };
 
-export default function PersonalizationPage() {
-  const settings = getSettings();
-  const customizableProducts = filterProducts({ customizable: true });
+export default async function PersonalizationPage() {
+  const settings = await getSettings();
+  const customizableProducts = await filterProducts({ customizable: true });
 
   return (
     <div>

@@ -6,14 +6,12 @@ import ProductOptions from "@/components/product/ProductOptions";
 import StarRating from "@/components/ui/StarRating";
 import ProductBadge from "@/components/ui/Badge";
 import ProductCard from "@/components/shop/ProductCard";
-import { getAllProducts, getCategory, getProductBySlug, getRelatedProducts, getSettings } from "@/lib/queries";
+import { getCategory, getProductBySlug, getRelatedProducts, getSettings } from "@/lib/queries";
 
-export function generateStaticParams() {
-  return getAllProducts().map((p) => ({ slug: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const product = getProductBySlug(params.slug);
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const product = await getProductBySlug(params.slug);
   if (!product) return {};
   return {
     title: product.name,
@@ -22,12 +20,13 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-  const product = getProductBySlug(params.slug);
+export default async function ProductPage({ params }: { params: { slug: string } }) {
+  const product = await getProductBySlug(params.slug);
   if (!product) notFound();
 
-  const settings = getSettings();
-  const related = getRelatedProducts(product);
+  const settings = await getSettings();
+  const related = await getRelatedProducts(product);
+  const category = await getCategory(product.category);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -51,7 +50,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
       <nav className="mb-6 text-xs text-ink-400">
         <Link href="/" className="hover:text-gold-600">Accueil</Link> /{" "}
-        <Link href={`/categorie/${product.category}`} className="hover:text-gold-600">{getCategory(product.category)?.name}</Link> /{" "}
+        <Link href={`/categorie/${product.category}`} className="hover:text-gold-600">{category?.name}</Link> /{" "}
         <span className="text-ink-600">{product.name}</span>
       </nav>
 

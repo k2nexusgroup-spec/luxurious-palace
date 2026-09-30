@@ -11,10 +11,10 @@ export const metadata: Metadata = {
     "Parcourez toute la boutique Luxurious Palace : bijoux, parfums et vêtements personnalisables. Filtrez par catégorie, taille, couleur et prix."
 };
 
-export default function BoutiquePage({ searchParams }: { searchParams: Record<string, string | undefined> }) {
-  const settings = getSettings();
-  const sizes = getAllSizes();
-  const colors = getAllColors();
+export default async function BoutiquePage({ searchParams }: { searchParams: Record<string, string | undefined> }) {
+  const settings = await getSettings();
+  const sizes = await getAllSizes();
+  const colors = await getAllColors();
 
   const filters: ProductFilters = {
     category: searchParams.category as ProductFilters["category"],
@@ -27,7 +27,7 @@ export default function BoutiquePage({ searchParams }: { searchParams: Record<st
     customizable: searchParams.customizable === "true"
   };
 
-  const products = filterProducts(filters);
+  const products = await filterProducts(filters);
 
   return (
     <div className="container-lp py-12 sm:py-16">

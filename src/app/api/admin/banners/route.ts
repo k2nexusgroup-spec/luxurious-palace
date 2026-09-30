@@ -3,7 +3,7 @@ import { readStore, updateStore } from "@/lib/db";
 import type { Banner } from "@/lib/types";
 
 export async function GET() {
-  const store = readStore();
+  const store = await readStore();
   return NextResponse.json(store.banners);
 }
 
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     image: body.image ?? "gradient-hero",
     active: body.active ?? true
   };
-  updateStore((data) => {
+  await updateStore((data) => {
     data.banners.push(newBanner);
   });
   return NextResponse.json(newBanner, { status: 201 });

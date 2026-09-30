@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description: "Contactez Luxurious Palace par WhatsApp, téléphone ou email pour toute question sur nos produits ou vos commandes."
 };
 
-export default function ContactPage() {
-  const settings = getSettings();
+export default async function ContactPage() {
+  const settings = await getSettings();
 
   return (
     <div className="container-lp py-16">

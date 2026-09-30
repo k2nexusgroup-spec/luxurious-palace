@@ -3,7 +3,7 @@ import { readStore, updateStore } from "@/lib/db";
 import type { PromoCode } from "@/lib/types";
 
 export async function GET() {
-  const store = readStore();
+  const store = await readStore();
   return NextResponse.json(store.settings.promoCodes);
 }
 
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     discountPercent: Number(body.discountPercent ?? 0),
     active: body.active ?? true
   };
-  updateStore((data) => {
+  await updateStore((data) => {
     data.settings.promoCodes.push(newCode);
   });
   return NextResponse.json(newCode, { status: 201 });

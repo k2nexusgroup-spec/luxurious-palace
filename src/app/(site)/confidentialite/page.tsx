@@ -3,8 +3,8 @@ import { getSettings } from "@/lib/queries";
 
 export const metadata: Metadata = { title: "Politique de confidentialité" };
 
-export default function ConfidentialitePage() {
-  const settings = getSettings();
+export default async function ConfidentialitePage() {
+  const settings = await getSettings();
 
   return (
     <div className="container-lp max-w-3xl py-16">

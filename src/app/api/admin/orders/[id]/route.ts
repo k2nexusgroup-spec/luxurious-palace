@@ -6,7 +6,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   const body = (await request.json()) as Partial<Order>;
   let updated: Order | null = null;
 
-  updateStore((data) => {
+  await updateStore((data) => {
     const index = data.orders.findIndex((o) => o.id === params.id);
     if (index === -1) return;
     data.orders[index] = { ...data.orders[index], ...body, id: params.id };
