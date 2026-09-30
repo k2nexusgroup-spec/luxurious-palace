@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import { cache } from "react";
 import { put, list } from "@vercel/blob";
 import type { StoreData } from "./types";
 
@@ -25,9 +24,7 @@ async function fetchFromBlob(): Promise<StoreData | null> {
   }
 }
 
-// Dedupe les lectures au sein d'une meme requete (utile pour les pages qui
-// appellent plusieurs fonctions de queries.ts sur le meme rendu).
-export const readStore = cache(async (): Promise<StoreData> => {
+export async function readStore(): Promise<StoreData> {
   const remote = await fetchFromBlob();
   if (remote) return remote;
 
@@ -36,7 +33,7 @@ export const readStore = cache(async (): Promise<StoreData> => {
   const seed = readSeed();
   await writeStore(seed);
   return seed;
-});
+}
 
 export async function writeStore(data: StoreData): Promise<void> {
   await put(STORE_BLOB_PATH, JSON.stringify(data, null, 2), {
