@@ -36,24 +36,34 @@
     ],
     "paymentMethods": [
       {
+        "id": "livraison",
         "name": "Paiement à la livraison",
-        "enabled": true
+        "enabled": true,
+        "detail": ""
       },
       {
+        "id": "orange-money",
         "name": "Orange Money",
-        "enabled": false
+        "enabled": false,
+        "detail": ""
       },
       {
+        "id": "mtn-money",
         "name": "MTN Money",
-        "enabled": false
+        "enabled": false,
+        "detail": ""
       },
       {
+        "id": "moov-money",
         "name": "Moov Money",
-        "enabled": false
+        "enabled": false,
+        "detail": ""
       },
       {
+        "id": "wave",
         "name": "Wave",
-        "enabled": false
+        "enabled": false,
+        "detail": ""
       }
     ]
   },

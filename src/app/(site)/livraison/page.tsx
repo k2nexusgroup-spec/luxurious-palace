@@ -44,6 +44,25 @@ export default async function LivraisonPage() {
         Ces informations sont configurables depuis l'espace administrateur de la boutique.
       </p>
 
+      {settings.paymentMethods.some((pm) => pm.enabled) && (
+        <div className="mx-auto mt-12 max-w-2xl">
+          <h2 className="font-serif text-xl font-semibold text-ink-900">Moyens de paiement acceptés</h2>
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {settings.paymentMethods
+              .filter((pm) => pm.enabled)
+              .map((pm) => (
+                <div key={pm.id} className="rounded-xl border border-ink-100 p-4">
+                  <p className="font-medium text-ink-800">{pm.name}</p>
+                  {pm.detail && <p className="mt-1 text-sm text-ink-500">{pm.detail}</p>}
+                </div>
+              ))}
+          </div>
+          <p className="mt-3 text-xs text-ink-400">
+            Le paiement se confirme avec notre équipe sur WhatsApp au moment de la commande.
+          </p>
+        </div>
+      )}
+
       <div className="mx-auto mt-12 max-w-2xl space-y-4 text-sm leading-relaxed text-ink-600">
         <h2 className="font-serif text-xl font-semibold text-ink-900">Retours & échanges</h2>
         <p>

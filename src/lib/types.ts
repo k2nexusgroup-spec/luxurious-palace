@@ -94,7 +94,14 @@ export interface StoreSettings {
   };
   deliveryZones: DeliveryZone[];
   promoCodes: PromoCode[];
-  paymentMethods: { name: string; enabled: boolean }[];
+  paymentMethods: PaymentMethod[];
+}
+
+export interface PaymentMethod {
+  id: string;
+  name: string;
+  enabled: boolean;
+  detail: string; // ex: numero mobile money, instructions affichees au client
 }
 
 export interface OrderItem {
