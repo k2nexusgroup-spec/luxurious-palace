@@ -16,7 +16,12 @@ async function fetchFromBlob(): Promise<StoreData | null> {
     const { blobs } = await list({ prefix: STORE_BLOB_PATH, limit: 10 });
     const match = blobs.find((b) => b.pathname === STORE_BLOB_PATH);
     if (!match) return null;
-    const res = await fetch(match.url, { cache: "no-store" });
+
+    // Le CDN de Vercel Blob met les fichiers publics en cache (~60s) meme avec
+    // cacheControlMaxAge:0. On ajoute un parametre lie a la derniere ecriture
+    // pour forcer une nouvelle URL (donc un vrai cache miss) a chaque mise a jour.
+    const bustedUrl = `${match.url}?v=${new Date(match.uploadedAt).getTime()}`;
+    const res = await fetch(bustedUrl, { cache: "no-store" });
     if (!res.ok) return null;
     return (await res.json()) as StoreData;
   } catch {
