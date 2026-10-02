@@ -67,11 +67,35 @@ async function putFile(filePath: string, contentBase64: string, message: string,
   }
 }
 
+// Le depot est public : si le token est absent ou refuse (401/403), la lecture
+// retombe sur raw.githubusercontent.com (sans authentification) pour que la
+// boutique reste en ligne. Seules les ecritures exigent un token valide.
+async function readPublicStore(): Promise<StoreData> {
+  const res = await fetch(
+    `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/${STORE_PATH}?t=${Date.now()}`,
+    { cache: "no-store" }
+  );
+  if (!res.ok) {
+    throw new Error(`Lecture publique GitHub impossible (HTTP ${res.status})`);
+  }
+  return (await res.json()) as StoreData;
+}
+
 export async function readStore(): Promise<StoreData> {
-  const file = await getFile(STORE_PATH);
-  if (file) {
+  if (!process.env.GITHUB_TOKEN) return readPublicStore();
+
+  const res = await fetch(`${contentsUrl(STORE_PATH)}?ref=${GITHUB_BRANCH}`, {
+    headers: githubHeaders(),
+    cache: "no-store"
+  });
+  if (res.status === 401 || res.status === 403) return readPublicStore();
+  if (res.ok) {
+    const file = (await res.json()) as GithubFile;
     const json = Buffer.from(file.content, "base64").toString("utf-8");
     return JSON.parse(json) as StoreData;
+  }
+  if (res.status !== 404) {
+    throw new Error(`Lecture GitHub impossible (HTTP ${res.status})`);
   }
 
   // Le fichier n'existe vraiment pas encore sur la branche : premier demarrage.
