@@ -74,9 +74,18 @@
       "description": "Chaînes, bracelets et boucles d'oreilles pour homme et femme, pensés pour sublimer chaque tenue.",
       "image": "",
       "subCategories": [
-        { "slug": "chaines", "name": "Chaînes" },
-        { "slug": "bracelets", "name": "Bracelets" },
-        { "slug": "boucles-oreilles", "name": "Boucles d'oreilles" }
+        {
+          "slug": "chaines",
+          "name": "Chaînes"
+        },
+        {
+          "slug": "bracelets",
+          "name": "Bracelets"
+        },
+        {
+          "slug": "boucles-oreilles",
+          "name": "Boucles d'oreilles"
+        }
       ]
     },
     {
@@ -85,8 +94,14 @@
       "description": "Des fragrances homme et femme qui marquent les esprits, à porter au quotidien ou pour les grandes occasions.",
       "image": "",
       "subCategories": [
-        { "slug": "parfum-homme", "name": "Parfums homme" },
-        { "slug": "parfum-femme", "name": "Parfums femme" }
+        {
+          "slug": "parfum-homme",
+          "name": "Parfums homme"
+        },
+        {
+          "slug": "parfum-femme",
+          "name": "Parfums femme"
+        }
       ]
     },
     {
@@ -95,10 +110,38 @@
       "description": "Débardeurs, T-shirts, polos et boxers 100% coton, personnalisables selon vos envies.",
       "image": "",
       "subCategories": [
-        { "slug": "debardeurs", "name": "Débardeurs" },
-        { "slug": "tshirts", "name": "T-shirts" },
-        { "slug": "polos", "name": "Polos" },
-        { "slug": "boxers", "name": "Boxers" }
+        {
+          "slug": "debardeurs",
+          "name": "Débardeurs"
+        },
+        {
+          "slug": "tshirts",
+          "name": "T-shirts"
+        },
+        {
+          "slug": "polos",
+          "name": "Polos"
+        },
+        {
+          "slug": "boxers",
+          "name": "Boxers"
+        }
+      ]
+    },
+    {
+      "slug": "montres-test",
+      "name": "Montres Test",
+      "description": "Categorie de test",
+      "image": "https://raw.githubusercontent.com/k2nexusgroup-spec/luxurious-palace/master/public-uploads/produits/1790957592688-sjj26h.png",
+      "subCategories": [
+        {
+          "slug": "montres-homme",
+          "name": "Montres homme"
+        },
+        {
+          "slug": "montres-femme",
+          "name": "Montres femme"
+        }
       ]
     }
   ],
