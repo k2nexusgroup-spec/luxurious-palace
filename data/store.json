@@ -97,7 +97,9 @@
       "gender": "homme",
       "price": 25000,
       "oldPrice": 32000,
-      "images": [],
+      "images": [
+        "https://raw.githubusercontent.com/k2nexusgroup-spec/luxurious-palace/master/public-uploads/produits/1790956935873-22gsu8.jpg"
+      ],
       "description": "Chaîne cubaine plaquée or, maille épaisse et fermoir sécurisé. Un incontournable pour affirmer votre style, résistant au quotidien et facile d'entretien.",
       "shortDescription": "Maille cubaine épaisse, finition plaquée or.",
       "sizes": [
@@ -116,7 +118,8 @@
       "rating": 4.7,
       "reviewsCount": 32,
       "popularity": 98,
-      "createdAt": "2026-06-01"
+      "createdAt": "2026-06-01",
+      "customizationNote": ""
     },
     {
       "id": "p002",
