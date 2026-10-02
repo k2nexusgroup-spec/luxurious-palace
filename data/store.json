@@ -108,7 +108,7 @@
       "slug": "vetements",
       "name": "Vêtements",
       "description": "Débardeurs, T-shirts, polos et boxers 100% coton, personnalisables selon vos envies.",
-      "image": "",
+      "image": "https://raw.githubusercontent.com/k2nexusgroup-spec/luxurious-palace/master/public-uploads/produits/1790970147794-2uiojx.jpg",
       "subCategories": [
         {
           "slug": "debardeurs",
