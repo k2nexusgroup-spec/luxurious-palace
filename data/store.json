@@ -127,22 +127,6 @@
           "name": "Boxers"
         }
       ]
-    },
-    {
-      "slug": "montres-test",
-      "name": "Montres Test",
-      "description": "Categorie de test",
-      "image": "https://raw.githubusercontent.com/k2nexusgroup-spec/luxurious-palace/master/public-uploads/produits/1790957592688-sjj26h.png",
-      "subCategories": [
-        {
-          "slug": "montres-homme",
-          "name": "Montres homme"
-        },
-        {
-          "slug": "montres-femme",
-          "name": "Montres femme"
-        }
-      ]
     }
   ],
   "products": [
