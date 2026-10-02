@@ -131,39 +131,6 @@
   ],
   "products": [
     {
-      "id": "p001",
-      "slug": "chaine-cubaine-or-homme",
-      "name": "Chaîne Cubaine Plaquée Or",
-      "category": "bijoux",
-      "subCategory": "chaines",
-      "gender": "homme",
-      "price": 25000,
-      "oldPrice": 32000,
-      "images": [
-        "https://raw.githubusercontent.com/k2nexusgroup-spec/luxurious-palace/master/public-uploads/produits/1790956935873-22gsu8.jpg"
-      ],
-      "description": "Chaîne cubaine plaquée or, maille épaisse et fermoir sécurisé. Un incontournable pour affirmer votre style, résistant au quotidien et facile d'entretien.",
-      "shortDescription": "Maille cubaine épaisse, finition plaquée or.",
-      "sizes": [
-        "50cm",
-        "60cm"
-      ],
-      "colors": [
-        "Or"
-      ],
-      "customizable": false,
-      "stock": 14,
-      "badges": [
-        "populaire",
-        "promo"
-      ],
-      "rating": 4.7,
-      "reviewsCount": 32,
-      "popularity": 98,
-      "createdAt": "2026-06-01",
-      "customizationNote": ""
-    },
-    {
       "id": "p002",
       "slug": "chaine-fine-argent-femme",
       "name": "Chaîne Fine Argentée",
