@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Filters from "@/components/shop/Filters";
 import ProductCard from "@/components/shop/ProductCard";
-import { filterProducts, getAllColors, getAllSizes, getSettings } from "@/lib/queries";
+import { filterProducts, getAllColors, getAllSizes, getCategories, getSettings } from "@/lib/queries";
 import type { ProductFilters } from "@/lib/queries";
 
 export const metadata: Metadata = {
@@ -15,6 +15,7 @@ export default async function BoutiquePage({ searchParams }: { searchParams: Rec
   const settings = await getSettings();
   const sizes = await getAllSizes();
   const colors = await getAllColors();
+  const categories = await getCategories();
 
   const filters: ProductFilters = {
     category: searchParams.category as ProductFilters["category"],
@@ -43,7 +44,7 @@ export default async function BoutiquePage({ searchParams }: { searchParams: Rec
 
       <div className="flex flex-col gap-8 lg:flex-row">
         <Suspense fallback={null}>
-          <Filters sizes={sizes} colors={colors} />
+          <Filters sizes={sizes} colors={colors} categories={categories} />
         </Suspense>
 
         <div className="flex-1">

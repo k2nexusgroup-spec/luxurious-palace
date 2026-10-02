@@ -1,15 +1,6 @@
-export type CategorySlug = "bijoux" | "parfums" | "vetements";
+export type CategorySlug = string;
 
-export type SubCategorySlug =
-  | "chaines"
-  | "bracelets"
-  | "boucles-oreilles"
-  | "parfum-homme"
-  | "parfum-femme"
-  | "debardeurs"
-  | "tshirts"
-  | "polos"
-  | "boxers";
+export type SubCategorySlug = string;
 
 export type Gender = "homme" | "femme" | "mixte";
 
@@ -39,11 +30,17 @@ export interface Product {
   createdAt: string;
 }
 
+export interface SubCategoryInfo {
+  slug: SubCategorySlug;
+  name: string;
+}
+
 export interface CategoryInfo {
   slug: CategorySlug;
   name: string;
   description: string;
-  image: string;
+  image: string; // URL de la photo de la categorie ; vide = visuel de demonstration
+  subCategories: SubCategoryInfo[];
 }
 
 export interface Testimonial {

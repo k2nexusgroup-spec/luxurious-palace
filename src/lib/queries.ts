@@ -6,7 +6,7 @@ export async function getSettings() {
 }
 
 export async function getCategories() {
-  return (await readStore()).categories;
+  return (await readStore()).categories.map((c) => ({ ...c, subCategories: c.subCategories ?? [] }));
 }
 
 export async function getCategory(slug: CategorySlug) {

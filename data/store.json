@@ -72,19 +72,34 @@
       "slug": "bijoux",
       "name": "Bijoux",
       "description": "Chaînes, bracelets et boucles d'oreilles pour homme et femme, pensés pour sublimer chaque tenue.",
-      "image": "gradient-bijoux"
+      "image": "",
+      "subCategories": [
+        { "slug": "chaines", "name": "Chaînes" },
+        { "slug": "bracelets", "name": "Bracelets" },
+        { "slug": "boucles-oreilles", "name": "Boucles d'oreilles" }
+      ]
     },
     {
       "slug": "parfums",
       "name": "Parfums",
       "description": "Des fragrances homme et femme qui marquent les esprits, à porter au quotidien ou pour les grandes occasions.",
-      "image": "gradient-parfums"
+      "image": "",
+      "subCategories": [
+        { "slug": "parfum-homme", "name": "Parfums homme" },
+        { "slug": "parfum-femme", "name": "Parfums femme" }
+      ]
     },
     {
       "slug": "vetements",
       "name": "Vêtements",
       "description": "Débardeurs, T-shirts, polos et boxers 100% coton, personnalisables selon vos envies.",
-      "image": "gradient-vetements"
+      "image": "",
+      "subCategories": [
+        { "slug": "debardeurs", "name": "Débardeurs" },
+        { "slug": "tshirts", "name": "T-shirts" },
+        { "slug": "polos", "name": "Polos" },
+        { "slug": "boxers", "name": "Boxers" }
+      ]
     }
   ],
   "products": [

@@ -8,17 +8,22 @@ import clsx from "clsx";
 import { useCartCount } from "@/lib/cart-store";
 import WhatsappIcon from "@/components/ui/WhatsappIcon";
 
-const NAV_LINKS = [
-  { href: "/", label: "Accueil" },
-  { href: "/boutique", label: "Boutique" },
-  { href: "/categorie/bijoux", label: "Bijoux" },
-  { href: "/categorie/parfums", label: "Parfums" },
-  { href: "/categorie/vetements", label: "Vêtements" },
-  { href: "/personnalisation", label: "Personnalisation" },
-  { href: "/contact", label: "Contact" }
-];
-
-export default function Header({ shopName, whatsappLink }: { shopName: string; whatsappLink: string }) {
+export default function Header({
+  shopName,
+  whatsappLink,
+  categories
+}: {
+  shopName: string;
+  whatsappLink: string;
+  categories: { slug: string; name: string }[];
+}) {
+  const NAV_LINKS = [
+    { href: "/", label: "Accueil" },
+    { href: "/boutique", label: "Boutique" },
+    ...categories.map((c) => ({ href: `/categorie/${c.slug}`, label: c.name })),
+    { href: "/personnalisation", label: "Personnalisation" },
+    { href: "/contact", label: "Contact" }
+  ];
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -46,7 +51,7 @@ export default function Header({ shopName, whatsappLink }: { shopName: string; w
           />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-5 xl:gap-7 lg:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -113,7 +118,7 @@ export default function Header({ shopName, whatsappLink }: { shopName: string; w
       <div
         className={clsx(
           "overflow-hidden bg-white transition-all duration-300 lg:hidden",
-          menuOpen ? "max-h-[28rem] border-t border-ink-100" : "max-h-0"
+          menuOpen ? "max-h-[44rem] border-t border-ink-100" : "max-h-0"
         )}
       >
         <nav className="container-lp flex flex-col gap-1 py-4">

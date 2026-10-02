@@ -2,27 +2,9 @@
 
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import clsx from "clsx";
-import type { CategorySlug } from "@/lib/types";
+import type { SubCategoryInfo } from "@/lib/types";
 
-const SUBCATEGORIES: Record<CategorySlug, { slug: string; label: string }[]> = {
-  bijoux: [
-    { slug: "chaines", label: "Chaînes" },
-    { slug: "bracelets", label: "Bracelets" },
-    { slug: "boucles-oreilles", label: "Boucles d'oreilles" }
-  ],
-  parfums: [
-    { slug: "parfum-homme", label: "Parfums homme" },
-    { slug: "parfum-femme", label: "Parfums femme" }
-  ],
-  vetements: [
-    { slug: "debardeurs", label: "Débardeurs" },
-    { slug: "tshirts", label: "T-shirts" },
-    { slug: "polos", label: "Polos" },
-    { slug: "boxers", label: "Boxers" }
-  ]
-};
-
-export default function CategoryFilters({ category }: { category: CategorySlug }) {
+export default function CategoryFilters({ subCategories }: { subCategories: SubCategoryInfo[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -49,7 +31,7 @@ export default function CategoryFilters({ category }: { category: CategorySlug }
       >
         Tout
       </button>
-      {SUBCATEGORIES[category].map((s) => (
+      {subCategories.map((s) => (
         <button
           key={s.slug}
           onClick={() => setParam("subCategory", subCategory === s.slug ? null : s.slug)}
@@ -58,7 +40,7 @@ export default function CategoryFilters({ category }: { category: CategorySlug }
             subCategory === s.slug ? "border-ink-900 bg-ink-900 text-white" : "border-ink-200 text-ink-600"
           )}
         >
-          {s.label}
+          {s.name}
         </button>
       ))}
 

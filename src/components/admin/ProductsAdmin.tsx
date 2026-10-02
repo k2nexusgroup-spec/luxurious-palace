@@ -1,22 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Badge, CategorySlug, Gender, Product, SubCategorySlug } from "@/lib/types";
+import type { Badge, CategoryInfo, Gender, Product } from "@/lib/types";
 import { formatFcfa } from "@/lib/whatsapp";
-
-const SUBCATEGORIES: Record<CategorySlug, SubCategorySlug[]> = {
-  bijoux: ["chaines", "bracelets", "boucles-oreilles"],
-  parfums: ["parfum-homme", "parfum-femme"],
-  vetements: ["debardeurs", "tshirts", "polos", "boxers"]
-};
 
 const BADGES: Badge[] = ["nouveau", "populaire", "promo"];
 
 const emptyForm = {
   id: "",
   name: "",
-  category: "bijoux" as CategorySlug,
-  subCategory: "chaines" as SubCategorySlug,
+  category: "",
+  subCategory: "",
   gender: "mixte" as Gender,
   price: "",
   oldPrice: "",
@@ -39,6 +33,9 @@ export default function ProductsAdmin() {
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState("");
+  const [categories, setCategories] = useState<CategoryInfo[]>([]);
+
+  const currentSubCategories = categories.find((c) => c.slug === form.category)?.subCategories ?? [];
 
   async function loadProducts() {
     setLoading(true);
@@ -49,10 +46,20 @@ export default function ProductsAdmin() {
 
   useEffect(() => {
     loadProducts();
+    fetch("/api/admin/categories")
+      .then((r) => r.json())
+      .then((list: CategoryInfo[]) =>
+        setCategories(list.map((c) => ({ ...c, subCategories: c.subCategories ?? [] })))
+      );
   }, []);
 
   function openCreate() {
-    setForm(emptyForm);
+    const first = categories[0];
+    setForm({
+      ...emptyForm,
+      category: first?.slug ?? "",
+      subCategory: first?.subCategories[0]?.slug ?? ""
+    });
     setFormOpen(true);
   }
 
@@ -199,7 +206,10 @@ export default function ProductsAdmin() {
                     )}
                   </td>
                   <td className="px-4 py-3 font-medium text-ink-800">{p.name}</td>
-                  <td className="px-4 py-3 capitalize text-ink-500">{p.category} / {p.subCategory}</td>
+                  <td className="px-4 py-3 text-ink-500">
+                    {categories.find((c) => c.slug === p.category)?.name ?? p.category}
+                    {p.subCategory && ` / ${categories.find((c) => c.slug === p.category)?.subCategories.find((s) => s.slug === p.subCategory)?.name ?? p.subCategory}`}
+                  </td>
                   <td className="px-4 py-3 text-ink-700">{formatFcfa(p.price)}</td>
                   <td className="px-4 py-3">
                     <span className={p.stock <= 5 ? "font-semibold text-red-500" : "text-ink-600"}>{p.stock}</span>
@@ -237,23 +247,26 @@ export default function ProductsAdmin() {
 
               <Field label="Catégorie">
                 <select
+                  required
                   value={form.category}
                   onChange={(e) => {
-                    const category = e.target.value as CategorySlug;
-                    setForm({ ...form, category, subCategory: SUBCATEGORIES[category][0] });
+                    const category = e.target.value;
+                    const subs = categories.find((c) => c.slug === category)?.subCategories ?? [];
+                    setForm({ ...form, category, subCategory: subs[0]?.slug ?? "" });
                   }}
                   className="input"
                 >
-                  <option value="bijoux">Bijoux</option>
-                  <option value="parfums">Parfums</option>
-                  <option value="vetements">Vêtements</option>
+                  {categories.map((c) => (
+                    <option key={c.slug} value={c.slug}>{c.name}</option>
+                  ))}
                 </select>
               </Field>
 
               <Field label="Sous-catégorie">
-                <select value={form.subCategory} onChange={(e) => setForm({ ...form, subCategory: e.target.value as SubCategorySlug })} className="input">
-                  {SUBCATEGORIES[form.category].map((s) => (
-                    <option key={s} value={s}>{s}</option>
+                <select value={form.subCategory} onChange={(e) => setForm({ ...form, subCategory: e.target.value })} className="input">
+                  {currentSubCategories.length === 0 && <option value="">Aucune</option>}
+                  {currentSubCategories.map((s) => (
+                    <option key={s.slug} value={s.slug}>{s.name}</option>
                   ))}
                 </select>
               </Field>

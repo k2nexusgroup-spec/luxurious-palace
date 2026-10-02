@@ -3,39 +3,24 @@
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import clsx from "clsx";
-import type { CategorySlug } from "@/lib/types";
+import type { CategoryInfo } from "@/lib/types";
 
-const CATEGORIES: { slug: CategorySlug; label: string }[] = [
-  { slug: "bijoux", label: "Bijoux" },
-  { slug: "parfums", label: "Parfums" },
-  { slug: "vetements", label: "Vêtements" }
-];
-
-const SUBCATEGORIES: Record<CategorySlug, { slug: string; label: string }[]> = {
-  bijoux: [
-    { slug: "chaines", label: "Chaînes" },
-    { slug: "bracelets", label: "Bracelets" },
-    { slug: "boucles-oreilles", label: "Boucles d'oreilles" }
-  ],
-  parfums: [
-    { slug: "parfum-homme", label: "Parfums homme" },
-    { slug: "parfum-femme", label: "Parfums femme" }
-  ],
-  vetements: [
-    { slug: "debardeurs", label: "Débardeurs" },
-    { slug: "tshirts", label: "T-shirts" },
-    { slug: "polos", label: "Polos" },
-    { slug: "boxers", label: "Boxers" }
-  ]
-};
-
-export default function Filters({ sizes, colors }: { sizes: string[]; colors: string[] }) {
+export default function Filters({
+  sizes,
+  colors,
+  categories
+}: {
+  sizes: string[];
+  colors: string[];
+  categories: CategoryInfo[];
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const category = searchParams.get("category") as CategorySlug | null;
+  const category = searchParams.get("category");
+  const subCategoryOptions = categories.find((c) => c.slug === category)?.subCategories ?? [];
   const subCategory = searchParams.get("subCategory");
   const gender = searchParams.get("gender");
   const size = searchParams.get("size");
@@ -82,7 +67,7 @@ export default function Filters({ sizes, colors }: { sizes: string[]; colors: st
       <div>
         <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-ink-400">Catégorie</p>
         <div className="space-y-2">
-          {CATEGORIES.map((c) => (
+          {categories.map((c) => (
             <label key={c.slug} className="flex cursor-pointer items-center gap-2 text-sm text-ink-700">
               <input
                 type="radio"
@@ -91,17 +76,17 @@ export default function Filters({ sizes, colors }: { sizes: string[]; colors: st
                 onChange={() => setParam("category", c.slug)}
                 className="accent-gold-500"
               />
-              {c.label}
+              {c.name}
             </label>
           ))}
         </div>
       </div>
 
-      {category && (
+      {category && subCategoryOptions.length > 0 && (
         <div>
           <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-ink-400">Sous-catégorie</p>
           <div className="space-y-2">
-            {SUBCATEGORIES[category].map((s) => (
+            {subCategoryOptions.map((s) => (
               <label key={s.slug} className="flex cursor-pointer items-center gap-2 text-sm text-ink-700">
                 <input
                   type="radio"
@@ -110,7 +95,7 @@ export default function Filters({ sizes, colors }: { sizes: string[]; colors: st
                   onChange={() => setParam("subCategory", s.slug)}
                   className="accent-gold-500"
                 />
-                {s.label}
+                {s.name}
               </label>
             ))}
           </div>

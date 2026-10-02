@@ -2,7 +2,13 @@ import Link from "next/link";
 import type { StoreSettings } from "@/lib/types";
 import WhatsappIcon from "@/components/ui/WhatsappIcon";
 
-export default function Footer({ settings }: { settings: StoreSettings }) {
+export default function Footer({
+  settings,
+  categories
+}: {
+  settings: StoreSettings;
+  categories: { slug: string; name: string }[];
+}) {
   const year = new Date().getFullYear();
 
   return (
@@ -40,9 +46,11 @@ export default function Footer({ settings }: { settings: StoreSettings }) {
         <div>
           <p className="text-xs font-semibold uppercase tracking-widest text-gold-400">Catégories</p>
           <ul className="mt-4 space-y-2 text-sm">
-            <li><Link href="/categorie/bijoux" className="hover:text-gold-300">Bijoux</Link></li>
-            <li><Link href="/categorie/parfums" className="hover:text-gold-300">Parfums</Link></li>
-            <li><Link href="/categorie/vetements" className="hover:text-gold-300">Vêtements</Link></li>
+            {categories.map((c) => (
+              <li key={c.slug}>
+                <Link href={`/categorie/${c.slug}`} className="hover:text-gold-300">{c.name}</Link>
+              </li>
+            ))}
           </ul>
           <p className="mt-6 text-xs font-semibold uppercase tracking-widest text-gold-400">Informations</p>
           <ul className="mt-4 space-y-2 text-sm">

@@ -10,7 +10,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as Partial<Product>;
 
-  if (!body.name || !body.category || !body.subCategory || body.price === undefined) {
+  if (!body.name || !body.category || body.price === undefined) {
     return NextResponse.json({ error: "Champs obligatoires manquants." }, { status: 400 });
   }
 
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     slug: `${slug}-${id.slice(-4)}`,
     name: body.name,
     category: body.category,
-    subCategory: body.subCategory,
+    subCategory: body.subCategory ?? "",
     gender: body.gender ?? "mixte",
     price: Number(body.price),
     oldPrice: body.oldPrice ? Number(body.oldPrice) : undefined,

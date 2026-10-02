@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import ProductVisual from "@/components/ui/ProductVisual";
+import { isImageUrl } from "@/lib/slug";
 import ProductCard from "@/components/shop/ProductCard";
 import CategoryFilters from "@/components/shop/CategoryFilters";
 import { filterProducts, getCategory, getSettings } from "@/lib/queries";
@@ -38,9 +40,13 @@ export default async function CategoryPage({
 
   return (
     <div>
-      <div className="relative overflow-hidden">
-        <ProductVisual category={category.slug} className="h-56 w-full sm:h-72" />
-        <div className="absolute inset-0 flex items-center bg-black/30">
+      <div className="relative h-56 overflow-hidden sm:h-72">
+        {isImageUrl(category.image) ? (
+          <Image src={category.image} alt={category.name} fill priority sizes="100vw" className="object-cover" />
+        ) : (
+          <ProductVisual category={category.slug} label={category.name} className="h-full w-full" />
+        )}
+        <div className="absolute inset-0 flex items-center bg-black/40">
           <div className="container-lp">
             <h1 className="font-serif text-3xl font-bold text-white sm:text-4xl">{category.name}</h1>
             <p className="mt-2 max-w-xl text-sm text-white/85 sm:text-base">{category.description}</p>
@@ -50,7 +56,7 @@ export default async function CategoryPage({
 
       <div className="container-lp py-10 sm:py-14">
         <Suspense fallback={null}>
-          <CategoryFilters category={category.slug} />
+          <CategoryFilters subCategories={category.subCategories} />
         </Suspense>
 
         <div className="mt-8">
